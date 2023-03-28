@@ -16,8 +16,6 @@ Syntax supported:
 Limitations:
 
 * Autoload cookies are treated as plain comments
-* Definitions (e.g. `defun`, `defvar`, `defmacro`) are treated as
-  plain s-expressions
 
 ## Limitations
 
