@@ -1,6 +1,6 @@
 # Tree-sitter Grammar for Emacs Lisp
 
-A simple tree-sitter grammar for elisp.
+A tree-sitter grammar for elisp.
 
 Syntax supported:
 
@@ -13,10 +13,11 @@ Syntax supported:
 * Special forms (`let` etc)
 * Comments
 
-Currently unsupported:
+Limitations:
 
-* Autoload cookies
-* Definitions (e.g. `defun`, `defvar`, `defmacro`)
+* Autoload cookies are treated as plain comments
+* Definitions (e.g. `defun`, `defvar`, `defmacro`) are treated as
+  plain s-expressions
 
 ## Limitations
 
