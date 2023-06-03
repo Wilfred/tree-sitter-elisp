@@ -1,5 +1,8 @@
 # Tree-sitter Grammar for Emacs Lisp
 
+<a href="https://crates.io/crates/tree-sitter-elisp"><img src="https://img.shields.io/crates/v/tree-sitter-elisp.svg?style=flat-square" alt="crates.io"></a>
+<a href="https://www.npmjs.com/package/tree-sitter-elisp"><img src="https://img.shields.io/npm/v/tree-sitter-elisp" alt="npm"></a>
+
 A tree-sitter grammar for elisp.
 
 Syntax supported:
