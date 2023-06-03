@@ -1,4 +1,6 @@
-# v1.3 (unreleased)
+# v1.4 (unreleased)
+
+# v1.3 (released 3 June 2023)
 
 Don't error on quoted forms that look like function definitions (such
 as `'(defun foo)`).
