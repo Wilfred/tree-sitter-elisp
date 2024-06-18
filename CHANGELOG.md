@@ -1,3 +1,7 @@
+# v1.5.0 (released 18 June 2024)
+
+Updated tree-sitter version and rebuilt parser.
+
 # v1.4.0 (released 18 June 2024)
 
 No functional changes, exercising the release process.
