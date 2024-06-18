@@ -46,6 +46,7 @@
   "tree-sitter": [
     {
       "scope": "source.emacs.lisp",
+      "highlights": "queries/highlights.scm",
       "file-types": [
         "el"
       ]
