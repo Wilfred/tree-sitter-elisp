@@ -3,5 +3,5 @@
   ;;   ^ function
   ;;        ^ variable.parameter
   "stuff"
-  ;; ^ comment
+  ;; ^ string
   x)
