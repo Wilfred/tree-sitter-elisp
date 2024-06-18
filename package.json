@@ -25,7 +25,10 @@
     "prebuildify": "prebuildify --napi --strip"
   },
   "author": "Wilfred Hughes <me@wilfred.me.uk>",
-  "repository": "https://github.com/Wilfred/tree-sitter-elisp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wilfred/tree-sitter-elisp.git"
+  },
   "license": "MIT",
   "dependencies": {
     "node-addon-api": "^7.1.0",
