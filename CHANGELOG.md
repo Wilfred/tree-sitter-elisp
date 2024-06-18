@@ -1,4 +1,6 @@
-# v1.4 (unreleased)
+# v1.4.0 (released 18 June 2024)
+
+No functional changes, exercising the release process.
 
 # v1.3 (released 3 June 2023)
 
