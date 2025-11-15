@@ -1,9 +1,10 @@
 [package]
 name = "tree-sitter-elisp"
-description = "elisp grammar for the tree-sitter parsing library"
+description = "Emacs Lisp tree-sitter grammar"
 version = "1.7.0"
-keywords = ["incremental", "parsing", "elisp"]
-categories = ["parsing", "text-editors"]
+keywords = ["incremental", "parsing", "tree-sitter", "elisp"]
+categories = ["parser-implementations", "parsing", "text-editors"]
+authors = ["Wilfred Hughes <me@wilfred.me.uk>"]
 repository = "https://github.com/Wilfred/tree-sitter-elisp"
 edition = "2018"
 license = "MIT"
