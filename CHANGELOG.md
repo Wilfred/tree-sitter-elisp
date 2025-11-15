@@ -1,3 +1,8 @@
+# v1.6.0 (released 15 November 2025)
+
+Updated tree-sitter version, rebuild parser, and added
+tree-sitter.json.
+
 # v1.5.0 (released 18 June 2024)
 
 Updated tree-sitter version and rebuilt parser.
