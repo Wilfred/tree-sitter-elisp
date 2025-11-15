@@ -12,8 +12,10 @@ jobs:
 
     strategy:
       matrix:
-        # 24.11.1 is the LTS version as of 15 Nov 2025.
-        node-version: [24.x]
+        # Node 24 requires C++ 20, presumably in binding.gyp.
+        #
+        # https://nodejs.org/en/blog/migrations/v22-to-v24#cc-addons
+        node-version: [22.x]
 
     steps:
       - uses: actions/checkout@v2
