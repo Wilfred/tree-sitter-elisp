@@ -7,7 +7,8 @@
       "title": "Emacs Lisp",
       "scope": "source.elisp",
       "file-types": [
-        "elisp"
+        "el",
+        ".emacs"
       ],
       "injection-regex": "^elisp$",
       "class-name": "TreeSitterElisp"
