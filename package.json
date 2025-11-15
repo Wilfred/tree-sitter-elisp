@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-elisp",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "tree-sitter grammar for Emacs Lisp",
   "main": "bindings/node",
   "types": "bindings/node",
