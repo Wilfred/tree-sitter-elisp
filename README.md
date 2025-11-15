@@ -71,6 +71,13 @@ parse everything.
 $ npm run parse -- '/home/wilfred/.emacs.d/**/*.el' --quiet --stat
 ```
 
+To regenerate the bindings, delete the previously generated files and
+run the following.
+
+```
+$ npm run ts-init
+```
+
 ## Why?
 
 The best place to read and write elisp is of course Emacs.
