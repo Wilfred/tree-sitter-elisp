@@ -8,12 +8,12 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [15.x]
+        # 24.11.1 is the LTS version as of 15 Nov 2025.
+        node-version: [24.x]
 
     steps:
       - uses: actions/checkout@v2
