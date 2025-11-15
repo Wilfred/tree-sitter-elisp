@@ -26,3 +26,7 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test
+
+      - uses: dtolnay/rust-toolchain@1.89.0
+      - name: Run tests for Rust bindings
+        run: cargo t
