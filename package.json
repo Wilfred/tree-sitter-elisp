@@ -17,6 +17,7 @@
     "src/**"
   ],
   "scripts": {
+    "ts-init": "tree-sitter init --update",
     "generate": "tree-sitter generate",
     "highlight": "tree-sitter highlight",
     "parse": "tree-sitter parse",
