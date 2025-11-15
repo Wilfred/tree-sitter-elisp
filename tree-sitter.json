@@ -11,6 +11,7 @@
         ".emacs"
       ],
       "injection-regex": "^elisp$",
+      "highlights": "queries/highlights.scm",
       "class-name": "TreeSitterElisp"
     }
   ],
