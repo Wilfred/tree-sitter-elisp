@@ -1,0 +1,40 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "elisp",
+      "camelcase": "Elisp",
+      "title": "Emacs Lisp",
+      "scope": "source.elisp",
+      "file-types": [
+        "elisp"
+      ],
+      "injection-regex": "^elisp$",
+      "class-name": "TreeSitterElisp"
+    }
+  ],
+  "metadata": {
+    "version": "1.6.0",
+    "license": "MIT",
+    "description": "Emacs Lisp",
+    "authors": [
+      {
+        "name": "Wilfred Hughes",
+        "email": "me@wilfred.me.uk",
+        "url": "https://www.wilfred.me.uk/"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/Wilfred/tree-sitter-elisp/"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": false,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": false,
+    "zig": false
+  }
+}
