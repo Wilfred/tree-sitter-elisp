@@ -1,3 +1,7 @@
+# v1.6.1 (released 15 November 2025)
+
+Updated Rust bindings to use tree-sitter-language.
+
 # v1.6.0 (released 15 November 2025)
 
 Updated tree-sitter version, rebuild parser, and added
