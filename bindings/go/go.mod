@@ -1,4 +1,4 @@
-module github.com/tree-sitter/tree-sitter-elisp
+module github.com/Wilfred/tree-sitter-elisp
 
 go 1.22
 
