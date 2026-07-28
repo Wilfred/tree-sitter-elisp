@@ -738,13 +738,6 @@
         }
       ]
     },
-    "dot": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "."
-      }
-    },
     "list": {
       "type": "SEQ",
       "members": [
@@ -753,16 +746,11 @@
           "value": "("
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_sexp"
-              }
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_sexp"
+          }
         },
         {
           "type": "STRING",
