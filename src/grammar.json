@@ -430,7 +430,7 @@
           "type": "TOKEN",
           "content": {
             "type": "PATTERN",
-            "value": "#([box]|[0-9][0-9]?r)[0-9a-zA-Z]"
+            "value": "#([box]|[0-9][0-9]?r)[0-9a-zA-Z]+"
           }
         }
       ]

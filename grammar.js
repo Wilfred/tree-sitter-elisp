@@ -23,7 +23,7 @@ const INTERNED_EMPTY_STRING = token("##");
 const UNINTERNED_SYMBOL = token(/#:([^# \n\s\f()\[\]'`,\\";]|\\.)*/);
 
 const INTEGER_BASE10 = token(/[+-]?[0-9]+\.?/);
-const INTEGER_WITH_BASE = token(/#([box]|[0-9][0-9]?r)[0-9a-zA-Z]/);
+const INTEGER_WITH_BASE = token(/#([box]|[0-9][0-9]?r)[0-9a-zA-Z]+/);
 
 // Exponents may be signed, e.g. 1500000e-3.
 // https://www.gnu.org/software/emacs/manual/html_node/elisp/Float-Basics.html

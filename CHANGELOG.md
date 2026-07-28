@@ -10,6 +10,10 @@ rather than symbols.
 merely resemble them, such as `1x0e+INF`, are no longer parsed as
 floats.
 
+Integers written with a radix, such as `#x2603`, are now parsed as a
+single integer. Previously only the first digit was included, so the
+rest became a second literal.
+
 # v1.6.1 (released 15 November 2025)
 
 Updated Rust bindings to use tree-sitter-language.
