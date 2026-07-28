@@ -19,6 +19,15 @@ Character modifiers may now be applied to any escape sequence, so
 single character. Previously only the modifier prefix was included, and
 the escape sequence became a separate literal.
 
+Sharp quoted forms, such as `#'foo` and `#'(lambda (x) x)`, are now
+parsed as `function_quote` rather than `quote`. Sharp quote reads as
+`(function ...)` rather than `(quote ...)`, so this distinguishes a
+function reference from a quoted literal, and sharp quoted symbols are
+now highlighted as functions.
+
+This is a breaking change for queries that match `(quote ...)` and
+expect it to cover `#'`.
+
 # v1.6.1 (released 15 November 2025)
 
 Updated Rust bindings to use tree-sitter-language.

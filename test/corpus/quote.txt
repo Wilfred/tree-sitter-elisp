@@ -3,7 +3,7 @@ Quotes
 ================================================================================
 
 'foo
-#'bar
+`bar
 '(x ,y ,@z)
 
 --------------------------------------------------------------------------------
@@ -20,3 +20,36 @@ Quotes
         (symbol))
       (unquote_splice
         (symbol)))))
+
+================================================================================
+Sharp quotes
+================================================================================
+
+#'bar
+#'(lambda (x) x)
+(mapcar #'(lambda (x) (1+ x)) xs)
+'#'foo
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_quote
+    (symbol))
+  (function_quote
+    (special_form
+      (list
+        (symbol))
+      (symbol)))
+  (list
+    (symbol)
+    (function_quote
+      (special_form
+        (list
+          (symbol))
+        (list
+          (symbol)
+          (symbol))))
+    (symbol))
+  (quote
+    (function_quote
+      (symbol))))

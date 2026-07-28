@@ -54,6 +54,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "function_quote"
+        },
+        {
+          "type": "SYMBOL",
           "name": "unquote_splice"
         },
         {
@@ -663,10 +667,6 @@
           "members": [
             {
               "type": "STRING",
-              "value": "#'"
-            },
-            {
-              "type": "STRING",
               "value": "'"
             },
             {
@@ -674,6 +674,19 @@
               "value": "`"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_sexp"
+        }
+      ]
+    },
+    "function_quote": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#'"
         },
         {
           "type": "SYMBOL",

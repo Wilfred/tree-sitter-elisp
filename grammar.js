@@ -82,6 +82,7 @@ module.exports = grammar({
         $.string_text_properties,
         $._atom,
         $.quote,
+        $.function_quote,
         $.unquote_splice,
         $.unquote
       ),
@@ -188,7 +189,13 @@ module.exports = grammar({
         UNINTERNED_SYMBOL
       ),
 
-    quote: ($) => seq(choice("#'", "'", "`"), $._sexp),
+    quote: ($) => seq(choice("'", "`"), $._sexp),
+
+    // Sharp quote reads as (function ...) rather than (quote ...), so
+    // the quoted form is a function rather than a literal.
+    // https://www.gnu.org/software/emacs/manual/html_node/elisp/Anonymous-Functions.html
+    function_quote: ($) => seq("#'", $._sexp),
+
     unquote_splice: ($) => seq(",@", $._sexp),
     unquote: ($) => seq(",", $._sexp),
 
