@@ -1,3 +1,12 @@
+# v1.7.0 (unreleased)
+
+Floats with signed exponents, such as `1e-5`, are now parsed as floats
+rather than symbols.
+
+`+1.0e+INF` and `+0.0e+NaN` are now parsed as floats, and symbols that
+merely resemble them, such as `1x0e+INF`, are no longer parsed as
+floats.
+
 # v1.6.1 (released 15 November 2025)
 
 Updated Rust bindings to use tree-sitter-language.
