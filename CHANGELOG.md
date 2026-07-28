@@ -1,5 +1,8 @@
 # v1.7.0 (unreleased)
 
+Added support for uninterned symbols, such as `#:foo`. These were
+previously parse errors.
+
 Floats with signed exponents, such as `1e-5`, are now parsed as floats
 rather than symbols.
 

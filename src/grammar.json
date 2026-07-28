@@ -587,6 +587,13 @@
             "type": "STRING",
             "value": "##"
           }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "#:([^# \\n\\s\\f()\\[\\]'`,\\\\\";]|\\\\.)*"
+          }
         }
       ]
     },
