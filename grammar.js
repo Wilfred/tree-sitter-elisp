@@ -20,11 +20,18 @@ const INTERNED_EMPTY_STRING = token("##");
 const INTEGER_BASE10 = token(/[+-]?[0-9]+\.?/);
 const INTEGER_WITH_BASE = token(/#([box]|[0-9][0-9]?r)[0-9a-zA-Z]/);
 
-const FLOAT_WITH_DEC_POINT = token(/[+-]?[0-9]*\.[0-9]+/);
-const FLOAT_WITH_EXPONENT = token(/[+-]?[0-9]+[eE][0-9]+/);
-const FLOAT_WITH_BOTH = token(/[+-]?[0-9]*\.[0-9]+[eE][0-9]+/);
-const FLOAT_INF = token(/-?1.0[eE]\+INF/);
-const FLOAT_NAN = token(/-?0.0[eE]\+NaN/);
+// Exponents may be signed, e.g. 1500000e-3.
+// https://www.gnu.org/software/emacs/manual/html_node/elisp/Float-Basics.html
+const EXPONENT = /[eE][+-]?[0-9]+/;
+
+// A decimal point needs digits after it, otherwise it's an integer:
+// 1. is 1, but 1.0 and .5 are floats.
+const FLOAT_WITH_DEC_POINT = token(
+  seq(/[+-]?[0-9]*\.[0-9]+/, optional(EXPONENT))
+);
+const FLOAT_WITH_EXPONENT = token(seq(/[+-]?[0-9]+\.?[0-9]*/, EXPONENT));
+const FLOAT_INF = token(/[+-]?1\.0[eE]\+INF/);
+const FLOAT_NAN = token(/[+-]?0\.0[eE]\+NaN/);
 
 const CHAR = token(/\?(\\.|.)/);
 const UNICODE_NAME_CHAR = token(/\?\\N\{[^}]+\}/);
@@ -136,13 +143,7 @@ module.exports = grammar({
         $.symbol
       ),
     float: ($) =>
-      choice(
-        FLOAT_WITH_DEC_POINT,
-        FLOAT_WITH_EXPONENT,
-        FLOAT_WITH_BOTH,
-        FLOAT_INF,
-        FLOAT_NAN
-      ),
+      choice(FLOAT_WITH_DEC_POINT, FLOAT_WITH_EXPONENT, FLOAT_INF, FLOAT_NAN),
     integer: ($) => choice(INTEGER_BASE10, INTEGER_WITH_BASE),
     char: ($) =>
       choice(
