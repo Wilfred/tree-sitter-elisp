@@ -7,9 +7,3 @@ src/tree_sitter/* linguist-generated
 bindings/** linguist-generated
 binding.gyp linguist-generated
 setup.py linguist-generated
-Makefile linguist-generated
-Package.swift linguist-generated
-
-# Zig bindings
-build.zig linguist-generated
-build.zig.zon linguist-generated
