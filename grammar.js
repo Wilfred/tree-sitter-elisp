@@ -17,6 +17,11 @@ const SYMBOL = token(
 const ESCAPED_READER_SYMBOL = token(/\\(`|'|,)/);
 const INTERNED_EMPTY_STRING = token("##");
 
+// Uninterned symbols are written with a #: prefix, e.g. #:foo. The name
+// may be empty, so #: on its own is also a symbol.
+// https://www.gnu.org/software/emacs/manual/html_node/elisp/Creating-Symbols.html
+const UNINTERNED_SYMBOL = token(/#:([^# \n\s\f()\[\]'`,\\";]|\\.)*/);
+
 const INTEGER_BASE10 = token(/[+-]?[0-9]+\.?/);
 const INTEGER_WITH_BASE = token(/#([box]|[0-9][0-9]?r)[0-9a-zA-Z]/);
 
@@ -171,7 +176,8 @@ module.exports = grammar({
         "defmacro",
         ESCAPED_READER_SYMBOL,
         SYMBOL,
-        INTERNED_EMPTY_STRING
+        INTERNED_EMPTY_STRING,
+        UNINTERNED_SYMBOL
       ),
 
     quote: ($) => seq(choice("#'", "'", "`"), $._sexp),
