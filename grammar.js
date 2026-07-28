@@ -199,8 +199,7 @@ module.exports = grammar({
     unquote_splice: ($) => seq(",@", $._sexp),
     unquote: ($) => seq(",", $._sexp),
 
-    dot: ($) => token("."),
-    list: ($) => seq("(", choice(repeat($._sexp)), ")"),
+    list: ($) => seq("(", repeat($._sexp), ")"),
     vector: ($) => seq("[", repeat($._sexp), "]"),
     bytecode: ($) => seq("#[", repeat($._sexp), "]"),
 
