@@ -41,6 +41,9 @@
 (macro_definition parameters: (list (symbol) @variable.parameter))
 (macro_definition docstring: (string) @comment)
 
+;; A sharp quoted symbol is a function reference, e.g. #'foo.
+(function_quote (symbol) @function)
+
 (comment) @comment
 
 (integer) @number

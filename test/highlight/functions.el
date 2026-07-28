@@ -5,3 +5,7 @@
   "stuff"
   ;; ^ string
   x)
+
+(mapcar #'foo xs)
+;;      ^ operator
+;;        ^ function
