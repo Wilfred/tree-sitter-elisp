@@ -13,6 +13,22 @@
         "src/parser.c",
         # NOTE: if your language has an external scanner, add it here.
       ],
+      # Node 24 builds addons against V8 headers that need C++ 20.
+      #
+      # https://nodejs.org/en/blog/migrations/v22-to-v24#cc-addons
+      "cflags_cc": [
+        "-std=c++20",
+      ],
+      "xcode_settings": {
+        "CLANG_CXX_LANGUAGE_STANDARD": "c++20",
+      },
+      "msvs_settings": {
+        "VCCLCompilerTool": {
+          "AdditionalOptions": [
+            "/std:c++20",
+          ],
+        },
+      },
       "conditions": [
         ["OS!='win'", {
           "cflags_c": [

@@ -10,19 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        # Node 24 requires C++ 20, presumably in binding.gyp.
-        #
-        # https://nodejs.org/en/blog/migrations/v22-to-v24#cc-addons
-        node-version: [22.x]
-
     steps:
       - uses: actions/checkout@v5
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 24.x
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test
