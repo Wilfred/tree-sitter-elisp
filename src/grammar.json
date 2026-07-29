@@ -175,11 +175,57 @@
           ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_sexp"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_sexp"
+              }
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_sexp"
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "dot"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_sexp"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_sexp"
+                  }
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "dot"
+                  },
+                  "named": true,
+                  "value": "symbol"
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -598,8 +644,17 @@
         {
           "type": "TOKEN",
           "content": {
-            "type": "PATTERN",
-            "value": "([^?# \\n\\s\\f()\\[\\]'`,\\\\\";]|\\\\.)([^# \\n\\s\\f()\\[\\]'`,\\\\\";]|\\\\.)*"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "([^.?# \\n\\s\\f()\\[\\]'`,\\\\\";]|\\\\.)([^# \\n\\s\\f()\\[\\]'`,\\\\\";]|\\\\.)*"
+              },
+              {
+                "type": "PATTERN",
+                "value": "\\.([^# \\n\\s\\f()\\[\\]'`,\\\\\";]|\\\\.)+"
+              }
+            ]
           }
         },
         {
@@ -702,6 +757,47 @@
                 "type": "SYMBOL",
                 "name": "_sexp"
               }
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "REPEAT1",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_sexp"
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "dot"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_sexp"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "REPEAT1",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_sexp"
+                  }
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "dot"
+                  },
+                  "named": true,
+                  "value": "symbol"
+                }
+              ]
             }
           ]
         },

@@ -7,7 +7,10 @@ const COMMENT = token(/;.*/);
 //
 // Symbols also cannot start with ?.
 const SYMBOL = token(
-  /([^?# \n\s\f()\[\]'`,\\";]|\\.)([^# \n\s\f()\[\]'`,\\";]|\\.)*/
+  choice(
+    /([^.?# \n\s\f()\[\]'`,\\";]|\\.)([^# \n\s\f()\[\]'`,\\";]|\\.)*/,
+    /\.([^# \n\s\f()\[\]'`,\\";]|\\.)+/
+  )
 );
 
 const ESCAPED_READER_SYMBOL = token(/\\(`|'|,)/);
@@ -120,7 +123,11 @@ module.exports = grammar({
           "unwind-protect",
           "while"
         ),
-        repeat($._sexp),
+        choice(
+          repeat($._sexp),
+          seq(repeat($._sexp), $.dot, $._sexp),
+          seq(repeat($._sexp), alias($.dot, $.symbol))
+        ),
         ")"
       ),
 
@@ -203,7 +210,16 @@ module.exports = grammar({
     unquote: ($) => seq(",", $._sexp),
 
     dot: ($) => token("."),
-    list: ($) => seq("(", choice(repeat($._sexp)), ")"),
+    list: ($) =>
+      seq(
+        "(",
+        choice(
+          repeat($._sexp),
+          seq(repeat1($._sexp), $.dot, $._sexp),
+          seq(repeat1($._sexp), alias($.dot, $.symbol))
+        ),
+        ")"
+      ),
     vector: ($) => seq("[", repeat($._sexp), "]"),
     bytecode: ($) => seq("#[", repeat($._sexp), "]"),
 

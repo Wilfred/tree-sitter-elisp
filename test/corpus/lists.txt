@@ -6,6 +6,8 @@ Lists
 (foo (bar))
 (1 2 . nil)
 (foo .)
+(setq . 2)
+`(progn . ,body)
 
 --------------------------------------------------------------------------------
 
@@ -18,8 +20,43 @@ Lists
   (list
     (integer)
     (integer)
-    (symbol)
+    (dot)
     (symbol))
   (list
     (symbol)
-    (symbol)))
+    (symbol))
+  (special_form
+    (dot)
+    (integer))
+  (quote
+    (special_form
+      (dot)
+      (unquote
+        (symbol)))))
+
+================================================================================
+Malformed dotted lists
+================================================================================
+
+(. a)
+(a . b c)
+(a . b . c)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (list
+    (ERROR
+      (dot))
+    (symbol))
+  (list
+    (symbol)
+    (dot)
+    (symbol)
+    (ERROR))
+  (list
+    (symbol)
+    (dot)
+    (symbol)
+    (ERROR
+      (dot))))
