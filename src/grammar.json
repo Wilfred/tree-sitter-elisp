@@ -1054,6 +1054,10 @@
     {
       "type": "SYMBOL",
       "name": "comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "bytecode_comment"
     }
   ],
   "conflicts": [],
@@ -1078,6 +1082,10 @@
     {
       "type": "SYMBOL",
       "name": "_symbol_with_raw_escape"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "bytecode_comment"
     }
   ],
   "inline": [],

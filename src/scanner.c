@@ -2,6 +2,7 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 
 enum TokenType {
   STRING,
@@ -9,6 +10,7 @@ enum TokenType {
   COMMENT,
   RAW_CHAR,
   SYMBOL_WITH_RAW_ESCAPE,
+  BYTECODE_COMMENT,
 };
 
 void *tree_sitter_elisp_external_scanner_create(void) { return NULL; }
@@ -192,8 +194,39 @@ static bool scan_symbol_with_raw_escape(TSLexer *lexer, bool initial) {
   return true;
 }
 
+static bool scan_bytecode_comment(TSLexer *lexer) {
+  size_t count = 0;
+  bool has_digit = false;
+  while (lexer->lookahead >= '0' && lexer->lookahead <= '9') {
+    unsigned digit = lexer->lookahead - '0';
+    if (count > (SIZE_MAX - digit) / 10) {
+      return false;
+    }
+    count = count * 10 + digit;
+    has_digit = true;
+    lexer->advance(lexer, false);
+  }
+  if (!has_digit) {
+    return false;
+  }
+
+  for (size_t i = 0; i < count; i++) {
+    if (lexer->eof(lexer)) {
+      return false;
+    }
+    lexer->advance(lexer, false);
+  }
+
+  lexer->result_symbol = BYTECODE_COMMENT;
+  return true;
+}
+
 static bool scan_hash_prefixed(TSLexer *lexer, const bool *valid_symbols) {
   lexer->advance(lexer, false);
+  if (lexer->lookahead == '@' && valid_symbols[BYTECODE_COMMENT]) {
+    lexer->advance(lexer, false);
+    return scan_bytecode_comment(lexer);
+  }
   if (lexer->lookahead == ':' &&
       valid_symbols[SYMBOL_WITH_RAW_ESCAPE]) {
     lexer->advance(lexer, false);
@@ -211,7 +244,8 @@ bool tree_sitter_elisp_external_scanner_scan(void *payload, TSLexer *lexer,
 
   if (!valid_symbols[STRING] && !valid_symbols[INTEGER_WITH_BASE] &&
       !valid_symbols[COMMENT] && !valid_symbols[RAW_CHAR] &&
-      !valid_symbols[SYMBOL_WITH_RAW_ESCAPE]) {
+      !valid_symbols[SYMBOL_WITH_RAW_ESCAPE] &&
+      !valid_symbols[BYTECODE_COMMENT]) {
     return false;
   }
 

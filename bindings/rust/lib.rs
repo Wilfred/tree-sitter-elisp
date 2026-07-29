@@ -119,6 +119,20 @@ mod tests {
     }
 
     #[test]
+    fn test_bytecode_comments() {
+        let mut parser = tree_sitter::Parser::new();
+        parser
+            .set_language(&super::LANGUAGE.into())
+            .expect("Error loading Emacs Lisp parser");
+        let tree = parser.parse(b"#@5a\0b\ncfoo", None).unwrap();
+        assert!(
+            !tree.root_node().has_error(),
+            "{}",
+            tree.root_node().to_sexp()
+        );
+    }
+
+    #[test]
     fn test_radix_integer_validation() {
         let mut parser = tree_sitter::Parser::new();
         parser

@@ -2192,6 +2192,11 @@
     "named": true
   },
   {
+    "type": "bytecode_comment",
+    "named": true,
+    "extra": true
+  },
+  {
     "type": "catch",
     "named": false
   },

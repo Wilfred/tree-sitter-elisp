@@ -76,9 +76,10 @@ module.exports = grammar({
     $.comment,
     $._raw_char,
     $._symbol_with_raw_escape,
+    $.bytecode_comment,
   ],
 
-  extras: ($) => [/(\s|\f)/, $.comment],
+  extras: ($) => [/(\s|\f)/, $.comment, $.bytecode_comment],
 
   rules: {
     source_file: ($) => repeat($._sexp),
