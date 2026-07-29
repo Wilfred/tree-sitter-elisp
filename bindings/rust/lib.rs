@@ -62,4 +62,28 @@ mod tests {
             tree.root_node().to_sexp()
         );
     }
+
+    #[test]
+    fn test_radix_integer_validation() {
+        let mut parser = tree_sitter::Parser::new();
+        parser
+            .set_language(&super::LANGUAGE.into())
+            .expect("Error loading Emacs Lisp parser");
+
+        for code in [
+            b"#b2".as_slice(),
+            b"#o8",
+            b"#xg",
+            b"#2r2",
+            b"#37rz",
+            b"#b10foo",
+        ] {
+            let tree = parser.parse(code, None).unwrap();
+            assert!(
+                tree.root_node().has_error(),
+                "{:?} parsed without errors",
+                code
+            );
+        }
+    }
 }

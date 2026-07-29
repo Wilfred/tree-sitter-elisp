@@ -477,11 +477,8 @@
           }
         },
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "#([boxBOX]|[0-9][0-9]?[rR])[+-]?[0-9a-zA-Z]+"
-          }
+          "type": "SYMBOL",
+          "name": "_integer_with_base"
         }
       ]
     },
@@ -915,6 +912,10 @@
     {
       "type": "SYMBOL",
       "name": "string"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_integer_with_base"
     }
   ],
   "inline": [],
