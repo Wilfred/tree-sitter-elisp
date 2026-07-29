@@ -28,6 +28,9 @@ now highlighted as functions.
 This is a breaking change for queries that match `(quote ...)` and
 expect it to cover `#'`.
 
+Keywords, such as `:foo`, are now highlighted as constants rather than
+as plain symbols.
+
 # v1.6.1 (released 15 November 2025)
 
 Updated Rust bindings to use tree-sitter-language.
