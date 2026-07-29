@@ -91,14 +91,13 @@ $ npm run generate
 ```
 
 `npm publish` does this for you (it's wired up as a `prepack` script),
-whereas `cargo publish` and the Python build use whatever is on disk.
-Cargo needs `--allow-dirty` because `src/parser.c` is packaged but not
-tracked by git.
+whereas `cargo publish` uses whatever is on disk. Cargo needs
+`--allow-dirty` because `src/parser.c` is packaged but not tracked by
+git.
 
 ```
 $ npm publish
 $ cargo publish --allow-dirty
-$ python -m build
 ```
 
 ## Why?
