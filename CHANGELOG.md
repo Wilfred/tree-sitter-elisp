@@ -14,6 +14,11 @@ Integers written with a radix, such as `#x2603`, are now parsed as a
 single integer. Previously only the first digit was included, so the
 rest became a second literal.
 
+Character modifiers may now be applied to any escape sequence, so
+`?\C-\101`, `?\M-\x178` and `?\M-\N{SNOWMAN}` are each parsed as a
+single character. Previously only the modifier prefix was included, and
+the escape sequence became a separate literal.
+
 # v1.6.1 (released 15 November 2025)
 
 Updated Rust bindings to use tree-sitter-language.

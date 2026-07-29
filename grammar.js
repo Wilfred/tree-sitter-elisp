@@ -38,17 +38,26 @@ const FLOAT_WITH_EXPONENT = token(seq(/[+-]?[0-9]+\.?[0-9]*/, EXPONENT));
 const FLOAT_INF = token(/[+-]?1\.0[eE]\+INF/);
 const FLOAT_NAN = token(/[+-]?0\.0[eE]\+NaN/);
 
+// Any character literal may be prefixed by modifiers, e.g. ?\C-, ?\M-
+// or the equivalent ?\^. This includes the escape sequences below, so
+// ?\C-\101 and ?\M-\x178 are single characters.
+// https://www.gnu.org/software/emacs/manual/html_node/elisp/Other-Char-Bits.html
+const CHAR_MODIFIERS = /(\\(([CMSHsA]-)|\^))*/;
+
 const CHAR = token(/\?(\\.|.)/);
-const UNICODE_NAME_CHAR = token(/\?\\N\{[^}]+\}/);
-const LOWER_CODE_POINT_CHAR = token(/\?\\u[0-9a-fA-F]{4}/);
-const UPPER_CODE_POINT_CHAR = token(/\?\\U[0-9a-fA-F]{8}/);
-const HEX_CHAR = token(/\?\\x[0-9a-fA-F]+/);
-const OCTAL_CHAR = token(/\?\\[0-7]{1,3}/);
+const UNICODE_NAME_CHAR = token(seq("?", CHAR_MODIFIERS, /\\N\{[^}]+\}/));
+const LOWER_CODE_POINT_CHAR = token(
+  seq("?", CHAR_MODIFIERS, /\\u[0-9a-fA-F]{4}/)
+);
+const UPPER_CODE_POINT_CHAR = token(
+  seq("?", CHAR_MODIFIERS, /\\U[0-9a-fA-F]{8}/)
+);
+const HEX_CHAR = token(seq("?", CHAR_MODIFIERS, /\\x[0-9a-fA-F]+/));
+// This also covers ?\M-\123, which previously needed its own token.
+const OCTAL_CHAR = token(seq("?", CHAR_MODIFIERS, /\\[0-7]{1,3}/));
 
 // E.g. ?\C-o or ?\^o or ?\C-\S-o
 const KEY_CHAR = token(/\?(\\(([CMSHsA]-)|\^))+(\\;|.)/);
-// E.g. ?\M-\123
-const META_OCTAL_CHAR = token(/\?\\M-\\[0-9]{1,3}/);
 
 // https://www.gnu.org/software/emacs/manual/html_node/elisp/Special-Read-Syntax.html
 const BYTE_COMPILED_FILE_NAME = token("#$");
@@ -158,8 +167,7 @@ module.exports = grammar({
         UPPER_CODE_POINT_CHAR,
         HEX_CHAR,
         OCTAL_CHAR,
-        KEY_CHAR,
-        META_OCTAL_CHAR
+        KEY_CHAR
       ),
     string: ($) => STRING,
     byte_compiled_file_name: ($) => BYTE_COMPILED_FILE_NAME,
