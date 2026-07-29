@@ -38,8 +38,12 @@ const FLOAT_WITH_DEC_POINT = token(
   seq(/[+-]?[0-9]*\.[0-9]+/, optional(EXPONENT))
 );
 const FLOAT_WITH_EXPONENT = token(seq(/[+-]?[0-9]+\.?[0-9]*/, EXPONENT));
-const FLOAT_INF = token(/[+-]?1\.0[eE]\+INF/);
-const FLOAT_NAN = token(/[+-]?0\.0[eE]\+NaN/);
+// Any mantissa is accepted before e+INF and e+NaN, so 2.0e+INF and
+// 3.0e+NaN are floats too. The exponent sign must be +, and INF and NaN
+// are case sensitive, so 1.0e-INF and 1.0e+inf are symbols.
+const INF_NAN_MANTISSA = /[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)/;
+const FLOAT_INF = token(seq(INF_NAN_MANTISSA, /[eE]\+INF/));
+const FLOAT_NAN = token(seq(INF_NAN_MANTISSA, /[eE]\+NaN/));
 
 // Any character literal may be prefixed by modifiers, e.g. ?\C-, ?\M-
 // or the equivalent ?\^. This includes the escape sequences below, so

@@ -58,14 +58,55 @@ Infinity and NaN literals
   (float))
 
 ================================================================================
+Infinity and NaN literals with any mantissa
+================================================================================
+
+2.0e+INF
+1.5e+INF
+-2.5e+INF
+1e+INF
+.5e+INF
+1.e+INF
+3.0e+NaN
+-2.0e+NaN
+12.34e+NaN
+1e+NaN
+1.0E+INF
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (float)
+  (float)
+  (float)
+  (float)
+  (float)
+  (float)
+  (float)
+  (float)
+  (float)
+  (float)
+  (float))
+
+================================================================================
 Symbols that look like infinity and NaN (regression test)
 ================================================================================
 
 1x0e+INF
 0y0e+NaN
+1.0e+inf
+1.0e+nan
+1.0e-INF
+1.0e+INFX
+e+INF
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
   (symbol)
   (symbol))
