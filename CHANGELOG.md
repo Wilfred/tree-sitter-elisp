@@ -1,44 +1,19 @@
 # v1.7.0 (unreleased)
 
-Added support for uninterned symbols, such as `#:foo`. These were
-previously parse errors.
+## Parsing
 
-Floats with signed exponents, such as `1e-5`, are now parsed as floats
-rather than symbols.
+Added support for parsing uninterned symbols `#:foo`.
 
-`+1.0e+INF` and `+0.0e+NaN` are now parsed as floats, and symbols that
-merely resemble them, such as `1x0e+INF`, are no longer parsed as
-floats.
-
-Integers written with a radix, such as `#x2603`, are now parsed as a
-single integer. Previously only the first digit was included, so the
-rest became a second literal.
-
-Radix integers may now be written with an uppercase prefix, such as
-`#XF6` or `#24R1k`, and may be negative, such as `#x-8000`. These were
-previously parse errors.
-
-Character modifiers may now be applied to any escape sequence, so
-`?\C-\101`, `?\M-\x178` and `?\M-\N{SNOWMAN}` are each parsed as a
-single character. Previously only the modifier prefix was included, and
-the escape sequence became a separate literal.
+Improved parsing for float literals, integer literals, and characters
+literals.
 
 Sharp quoted forms, such as `#'foo` and `#'(lambda (x) x)`, are now
-parsed as `function_quote` rather than `quote`. Sharp quote reads as
-`(function ...)` rather than `(quote ...)`, so this distinguishes a
-function reference from a quoted literal, and sharp quoted symbols are
-now highlighted as functions.
+parsed as `function_quote` rather than `quote`.
 
-This is a breaking change for queries that match `(quote ...)` and
-expect it to cover `#'`.
+## Highlighting
 
 Keywords, such as `:foo`, are now highlighted as constants rather than
 as plain symbols.
-
-Character literals whose final character is escaped, such as `?\C-\[`,
-`?\^\\` and `?\M-\d`, are now parsed correctly. Previously the trailing
-backslash consumed the following character, so `?\C-\[` opened a vector
-and swallowed everything up to the next `]`.
 
 # v1.6.1 (released 15 November 2025)
 
