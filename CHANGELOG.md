@@ -14,6 +14,10 @@ Integers written with a radix, such as `#x2603`, are now parsed as a
 single integer. Previously only the first digit was included, so the
 rest became a second literal.
 
+Radix integers may now be written with an uppercase prefix, such as
+`#XF6` or `#24R1k`, and may be negative, such as `#x-8000`. These were
+previously parse errors.
+
 Character modifiers may now be applied to any escape sequence, so
 `?\C-\101`, `?\M-\x178` and `?\M-\N{SNOWMAN}` are each parsed as a
 single character. Previously only the modifier prefix was included, and

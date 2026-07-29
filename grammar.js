@@ -23,7 +23,10 @@ const INTERNED_EMPTY_STRING = token("##");
 const UNINTERNED_SYMBOL = token(/#:([^# \n\s\f()\[\]'`,\\";]|\\.)*/);
 
 const INTEGER_BASE10 = token(/[+-]?[0-9]+\.?/);
-const INTEGER_WITH_BASE = token(/#([box]|[0-9][0-9]?r)[0-9a-zA-Z]+/);
+// The radix prefix may be written in either case, e.g. #XF6 and #24R1k
+// are valid. The digits may be preceded by a sign, e.g. #x-8000.
+// https://www.gnu.org/software/emacs/manual/html_node/elisp/Integer-Basics.html
+const INTEGER_WITH_BASE = token(/#([boxBOX]|[0-9][0-9]?[rR])[+-]?[0-9a-zA-Z]+/);
 
 // Exponents may be signed, e.g. 1500000e-3.
 // https://www.gnu.org/software/emacs/manual/html_node/elisp/Float-Basics.html
