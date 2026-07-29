@@ -26,8 +26,6 @@ const INTEGER_BASE10 = token(/[+-]?[0-9]+\.?/);
 // The radix prefix may be written in either case, e.g. #XF6 and #24R1k
 // are valid. The digits may be preceded by a sign, e.g. #x-8000.
 // https://www.gnu.org/software/emacs/manual/html_node/elisp/Integer-Basics.html
-const INTEGER_WITH_BASE = token(/#([boxBOX]|[0-9][0-9]?[rR])[+-]?[0-9a-zA-Z]+/);
-
 // Exponents may be signed, e.g. 1500000e-3.
 // https://www.gnu.org/software/emacs/manual/html_node/elisp/Float-Basics.html
 const EXPONENT = /[eE][+-]?[0-9]+/;
@@ -68,6 +66,10 @@ const BYTE_COMPILED_FILE_NAME = token("#$");
 
 module.exports = grammar({
   name: "elisp",
+
+  // The declared radix determines which digits are valid, so this token
+  // requires contextual validation in an external scanner.
+  externals: ($) => [$._integer_with_base],
 
   extras: ($) => [/(\s|\f)/, $.comment],
 
@@ -163,7 +165,7 @@ module.exports = grammar({
       ),
     float: ($) =>
       choice(FLOAT_WITH_DEC_POINT, FLOAT_WITH_EXPONENT, FLOAT_INF, FLOAT_NAN),
-    integer: ($) => choice(INTEGER_BASE10, INTEGER_WITH_BASE),
+    integer: ($) => choice(INTEGER_BASE10, $._integer_with_base),
     char: ($) =>
       choice(
         CHAR,
