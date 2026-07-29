@@ -34,7 +34,6 @@
     "c": false,
     "go": false,
     "node": true,
-    "python": true,
     "rust": true,
     "swift": false,
     "zig": false
