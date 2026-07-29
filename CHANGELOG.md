@@ -1,5 +1,7 @@
 # v1.7.1 (unreleased)
 
+Improved parsing for float literals.
+
 # v1.7.0 (released 29 July 2026)
 
 ## Parsing
