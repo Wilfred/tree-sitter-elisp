@@ -96,6 +96,29 @@ mod tests {
     }
 
     #[test]
+    fn test_raw_escaped_symbol_characters() {
+        let mut parser = tree_sitter::Parser::new();
+        parser
+            .set_language(&super::LANGUAGE.into())
+            .expect("Error loading Emacs Lisp parser");
+
+        for code in [
+            b"foo\\\0bar".as_slice(),
+            b"foo\\\nbar",
+            b"#:foo\\\0bar",
+            b"#:foo\\\nbar",
+        ] {
+            let tree = parser.parse(code, None).unwrap();
+            assert!(
+                !tree.root_node().has_error(),
+                "{:?}: {}",
+                code,
+                tree.root_node().to_sexp()
+            );
+        }
+    }
+
+    #[test]
     fn test_radix_integer_validation() {
         let mut parser = tree_sitter::Parser::new();
         parser

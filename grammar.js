@@ -75,6 +75,7 @@ module.exports = grammar({
     $._integer_with_base,
     $.comment,
     $._raw_char,
+    $._symbol_with_raw_escape,
   ],
 
   extras: ($) => [/(\s|\f)/, $.comment],
@@ -208,7 +209,8 @@ module.exports = grammar({
         ESCAPED_READER_SYMBOL,
         SYMBOL,
         INTERNED_EMPTY_STRING,
-        UNINTERNED_SYMBOL
+        UNINTERNED_SYMBOL,
+        $._symbol_with_raw_escape
       ),
 
     quote: ($) => seq(choice("'", "`"), $._sexp),

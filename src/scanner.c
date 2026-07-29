@@ -8,6 +8,7 @@ enum TokenType {
   INTEGER_WITH_BASE,
   COMMENT,
   RAW_CHAR,
+  SYMBOL_WITH_RAW_ESCAPE,
 };
 
 void *tree_sitter_elisp_external_scanner_create(void) { return NULL; }
@@ -71,11 +72,6 @@ static int digit_value(int32_t character) {
 }
 
 static bool scan_integer_with_base(TSLexer *lexer) {
-  if (lexer->lookahead != '#') {
-    return false;
-  }
-
-  lexer->advance(lexer, false);
   unsigned radix;
   if (lexer->lookahead == 'b' || lexer->lookahead == 'B') {
     radix = 2;
@@ -158,12 +154,64 @@ static bool scan_raw_char(TSLexer *lexer) {
   return true;
 }
 
+static bool is_symbol_delimiter(int32_t character, bool initial) {
+  return character == 0 || character == ' ' ||
+         (character >= '\t' && character <= '\r') || character == '(' ||
+         character == ')' || character == '[' || character == ']' ||
+         character == '\'' || character == '`' || character == ',' ||
+         character == '"' || character == ';' || character == '#' ||
+         (initial && character == '?');
+}
+
+static bool scan_symbol_with_raw_escape(TSLexer *lexer, bool initial) {
+  bool has_raw_escape = false;
+
+  while (!lexer->eof(lexer)) {
+    if (lexer->lookahead == '\\') {
+      lexer->advance(lexer, false);
+      if (lexer->eof(lexer)) {
+        return false;
+      }
+      has_raw_escape =
+          has_raw_escape || lexer->lookahead == 0 || lexer->lookahead == '\n';
+      lexer->advance(lexer, false);
+      initial = false;
+    } else if (!is_symbol_delimiter(lexer->lookahead, initial)) {
+      lexer->advance(lexer, false);
+      initial = false;
+    } else {
+      break;
+    }
+  }
+
+  if (!has_raw_escape) {
+    return false;
+  }
+
+  lexer->result_symbol = SYMBOL_WITH_RAW_ESCAPE;
+  return true;
+}
+
+static bool scan_hash_prefixed(TSLexer *lexer, const bool *valid_symbols) {
+  lexer->advance(lexer, false);
+  if (lexer->lookahead == ':' &&
+      valid_symbols[SYMBOL_WITH_RAW_ESCAPE]) {
+    lexer->advance(lexer, false);
+    return scan_symbol_with_raw_escape(lexer, false);
+  }
+  if (valid_symbols[INTEGER_WITH_BASE]) {
+    return scan_integer_with_base(lexer);
+  }
+  return false;
+}
+
 bool tree_sitter_elisp_external_scanner_scan(void *payload, TSLexer *lexer,
                                              const bool *valid_symbols) {
   (void)payload;
 
   if (!valid_symbols[STRING] && !valid_symbols[INTEGER_WITH_BASE] &&
-      !valid_symbols[COMMENT] && !valid_symbols[RAW_CHAR]) {
+      !valid_symbols[COMMENT] && !valid_symbols[RAW_CHAR] &&
+      !valid_symbols[SYMBOL_WITH_RAW_ESCAPE]) {
     return false;
   }
 
@@ -172,17 +220,20 @@ bool tree_sitter_elisp_external_scanner_scan(void *payload, TSLexer *lexer,
     lexer->advance(lexer, true);
   }
 
-  if (valid_symbols[STRING] && scan_string(lexer)) {
-    return true;
+  if (lexer->lookahead == '"') {
+    return valid_symbols[STRING] && scan_string(lexer);
   }
-  if (valid_symbols[INTEGER_WITH_BASE] && scan_integer_with_base(lexer)) {
-    return true;
+  if (lexer->lookahead == ';') {
+    return valid_symbols[COMMENT] && scan_comment(lexer);
   }
-  if (valid_symbols[COMMENT] && scan_comment(lexer)) {
-    return true;
+  if (lexer->lookahead == '?') {
+    return valid_symbols[RAW_CHAR] && scan_raw_char(lexer);
   }
-  if (valid_symbols[RAW_CHAR] && scan_raw_char(lexer)) {
-    return true;
+  if (lexer->lookahead == '#') {
+    return scan_hash_prefixed(lexer, valid_symbols);
+  }
+  if (valid_symbols[SYMBOL_WITH_RAW_ESCAPE]) {
+    return scan_symbol_with_raw_escape(lexer, true);
   }
   return false;
 }
