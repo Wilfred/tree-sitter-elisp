@@ -1036,13 +1036,6 @@
         "type": "PATTERN",
         "value": "#[0-9]+#"
       }
-    },
-    "comment": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": ";.*"
-      }
     }
   },
   "extras": [
@@ -1065,6 +1058,10 @@
     {
       "type": "SYMBOL",
       "name": "_integer_with_base"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "inline": [],

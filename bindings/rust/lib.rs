@@ -64,6 +64,20 @@ mod tests {
     }
 
     #[test]
+    fn test_comment_with_nul_bytes() {
+        let mut parser = tree_sitter::Parser::new();
+        parser
+            .set_language(&super::LANGUAGE.into())
+            .expect("Error loading Emacs Lisp parser");
+        let tree = parser.parse(b"; a\0b\nfoo", None).unwrap();
+        assert!(
+            !tree.root_node().has_error(),
+            "{}",
+            tree.root_node().to_sexp()
+        );
+    }
+
+    #[test]
     fn test_radix_integer_validation() {
         let mut parser = tree_sitter::Parser::new();
         parser

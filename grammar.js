@@ -1,5 +1,3 @@
-const COMMENT = token(/;.*/);
-
 // Symbols can contain any character when escaped:
 // https://www.gnu.org/software/emacs/manual/html_node/elisp/Symbol-Type.html
 // Most characters do not need escaping, but space and parentheses
@@ -72,7 +70,7 @@ module.exports = grammar({
 
   // Strings use an external scanner because the generated lexer treats NUL
   // as a sentinel, even when it occurs before the actual end of the input.
-  externals: ($) => [$.string, $._integer_with_base],
+  externals: ($) => [$.string, $._integer_with_base, $.comment],
 
   extras: ($) => [/(\s|\f)/, $.comment],
 
@@ -245,6 +243,5 @@ module.exports = grammar({
     circular_definition: ($) => seq(token(/#[0-9]+=/), $._sexp),
     circular_reference: ($) => token(/#[0-9]+#/),
 
-    comment: ($) => COMMENT,
   },
 });
