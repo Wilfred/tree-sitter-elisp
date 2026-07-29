@@ -852,11 +852,20 @@
     {
       "type": "SYMBOL",
       "name": "comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "bytecode_comment"
     }
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "bytecode_comment"
+    }
+  ],
   "inline": [],
   "supertypes": [],
   "reserved": {}
