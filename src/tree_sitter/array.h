@@ -195,6 +195,7 @@ static inline void _array__reserve(Array *self, size_t element_size, uint32_t ne
 static inline void _array__assign(Array *self, const Array *other, size_t element_size) {
   _array__reserve(self, element_size, other->size);
   self->size = other->size;
+  assert(self->size == 0 || other->contents != NULL);
   memcpy(self->contents, other->contents, self->size * element_size);
 }
 
