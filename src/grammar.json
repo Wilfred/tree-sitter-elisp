@@ -38,6 +38,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "bool_vector"
+        },
+        {
+          "type": "SYMBOL",
           "name": "bytecode"
         },
         {
@@ -833,6 +837,22 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "bool_vector": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "#&[0-9]+"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
         }
       ]
     },
