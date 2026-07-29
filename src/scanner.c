@@ -7,6 +7,7 @@ enum TokenType {
   STRING,
   INTEGER_WITH_BASE,
   COMMENT,
+  RAW_CHAR,
 };
 
 void *tree_sitter_elisp_external_scanner_create(void) { return NULL; }
@@ -138,12 +139,31 @@ static bool scan_comment(TSLexer *lexer) {
   return true;
 }
 
+static bool scan_raw_char(TSLexer *lexer) {
+  if (lexer->lookahead != '?') {
+    return false;
+  }
+
+  lexer->advance(lexer, false);
+  if (lexer->lookahead == '\\') {
+    lexer->advance(lexer, false);
+  }
+  if (lexer->eof(lexer) ||
+      (lexer->lookahead != 0 && lexer->lookahead != '\n')) {
+    return false;
+  }
+
+  lexer->advance(lexer, false);
+  lexer->result_symbol = RAW_CHAR;
+  return true;
+}
+
 bool tree_sitter_elisp_external_scanner_scan(void *payload, TSLexer *lexer,
                                              const bool *valid_symbols) {
   (void)payload;
 
   if (!valid_symbols[STRING] && !valid_symbols[INTEGER_WITH_BASE] &&
-      !valid_symbols[COMMENT]) {
+      !valid_symbols[COMMENT] && !valid_symbols[RAW_CHAR]) {
     return false;
   }
 
@@ -159,6 +179,9 @@ bool tree_sitter_elisp_external_scanner_scan(void *payload, TSLexer *lexer,
     return true;
   }
   if (valid_symbols[COMMENT] && scan_comment(lexer)) {
+    return true;
+  }
+  if (valid_symbols[RAW_CHAR] && scan_raw_char(lexer)) {
     return true;
   }
   return false;

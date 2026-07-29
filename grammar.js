@@ -70,7 +70,12 @@ module.exports = grammar({
 
   // Strings use an external scanner because the generated lexer treats NUL
   // as a sentinel, even when it occurs before the actual end of the input.
-  externals: ($) => [$.string, $._integer_with_base, $.comment],
+  externals: ($) => [
+    $.string,
+    $._integer_with_base,
+    $.comment,
+    $._raw_char,
+  ],
 
   extras: ($) => [/(\s|\f)/, $.comment],
 
@@ -185,7 +190,8 @@ module.exports = grammar({
         UPPER_CODE_POINT_CHAR,
         HEX_CHAR,
         OCTAL_CHAR,
-        KEY_CHAR
+        KEY_CHAR,
+        $._raw_char
       ),
     byte_compiled_file_name: ($) => BYTE_COMPILED_FILE_NAME,
     symbol: ($) =>
