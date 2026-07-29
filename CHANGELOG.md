@@ -31,6 +31,11 @@ expect it to cover `#'`.
 Keywords, such as `:foo`, are now highlighted as constants rather than
 as plain symbols.
 
+Character literals whose final character is escaped, such as `?\C-\[`,
+`?\^\\` and `?\M-\d`, are now parsed correctly. Previously the trailing
+backslash consumed the following character, so `?\C-\[` opened a vector
+and swallowed everything up to the next `]`.
+
 # v1.6.1 (released 15 November 2025)
 
 Updated Rust bindings to use tree-sitter-language.

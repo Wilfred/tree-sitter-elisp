@@ -56,8 +56,9 @@ const HEX_CHAR = token(seq("?", CHAR_MODIFIERS, /\\x[0-9a-fA-F]+/));
 // This also covers ?\M-\123, which previously needed its own token.
 const OCTAL_CHAR = token(seq("?", CHAR_MODIFIERS, /\\[0-7]{1,3}/));
 
-// E.g. ?\C-o or ?\^o or ?\C-\S-o
-const KEY_CHAR = token(/\?(\\(([CMSHsA]-)|\^))+(\\;|.)/);
+// E.g. ?\C-o or ?\^o or ?\C-\S-o. The final character may itself be
+// escaped, e.g. ?\C-\[ or ?\^\\.
+const KEY_CHAR = token(/\?(\\(([CMSHsA]-)|\^))+(\\.|.)/);
 
 // https://www.gnu.org/software/emacs/manual/html_node/elisp/Special-Read-Syntax.html
 const BYTE_COMPILED_FILE_NAME = token("#$");
