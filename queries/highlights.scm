@@ -53,9 +53,12 @@
   "("
   ")"
   "#["
+  "#s("
   "["
   "]"
 ] @punctuation.bracket
+
+(circular_reference) @constant
 
 [
   "`"

@@ -34,7 +34,15 @@
         },
         {
           "type": "SYMBOL",
+          "name": "bool_vector"
+        },
+        {
+          "type": "SYMBOL",
           "name": "hash_table"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "record"
         },
         {
           "type": "SYMBOL",
@@ -43,6 +51,14 @@
         {
           "type": "SYMBOL",
           "name": "string_text_properties"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "circular_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "circular_reference"
         },
         {
           "type": "SYMBOL",
@@ -430,7 +446,7 @@
           "type": "TOKEN",
           "content": {
             "type": "PATTERN",
-            "value": "#([box]|[0-9][0-9]?r)[0-9a-zA-Z]+"
+            "value": "#([boxBOX]|[0-9][0-9]?[rR])[+-]?[0-9a-zA-Z]+"
           }
         }
       ]
@@ -448,50 +464,108 @@
         {
           "type": "TOKEN",
           "content": {
-            "type": "PATTERN",
-            "value": "\\?\\\\N\\{[^}]+\\}"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "?"
+              },
+              {
+                "type": "PATTERN",
+                "value": "(\\\\(([CMSHsA]-)|\\^))*"
+              },
+              {
+                "type": "PATTERN",
+                "value": "\\\\N\\{[^}]+\\}"
+              }
+            ]
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "?"
+              },
+              {
+                "type": "PATTERN",
+                "value": "(\\\\(([CMSHsA]-)|\\^))*"
+              },
+              {
+                "type": "PATTERN",
+                "value": "\\\\u[0-9a-fA-F]{4}"
+              }
+            ]
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "?"
+              },
+              {
+                "type": "PATTERN",
+                "value": "(\\\\(([CMSHsA]-)|\\^))*"
+              },
+              {
+                "type": "PATTERN",
+                "value": "\\\\U[0-9a-fA-F]{8}"
+              }
+            ]
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "?"
+              },
+              {
+                "type": "PATTERN",
+                "value": "(\\\\(([CMSHsA]-)|\\^))*"
+              },
+              {
+                "type": "PATTERN",
+                "value": "\\\\x[0-9a-fA-F]+"
+              }
+            ]
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "?"
+              },
+              {
+                "type": "PATTERN",
+                "value": "(\\\\(([CMSHsA]-)|\\^))*"
+              },
+              {
+                "type": "PATTERN",
+                "value": "\\\\[0-7]{1,3}"
+              }
+            ]
           }
         },
         {
           "type": "TOKEN",
           "content": {
             "type": "PATTERN",
-            "value": "\\?\\\\u[0-9a-fA-F]{4}"
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "\\?\\\\U[0-9a-fA-F]{8}"
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "\\?\\\\x[0-9a-fA-F]+"
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "\\?\\\\[0-7]{1,3}"
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "\\?(\\\\(([CMSHsA]-)|\\^))+(\\\\;|.)"
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "\\?\\\\M-\\\\[0-9]{1,3}"
+            "value": "\\?(\\\\(([CMSHsA]-)|\\^))+(\\\\.|.)"
           }
         }
       ]
@@ -593,6 +667,13 @@
           "content": {
             "type": "PATTERN",
             "value": "#:([^# \\n\\s\\f()\\[\\]'`,\\\\\";]|\\\\.)*"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "#_([^# \\n\\s\\f()\\[\\]'`,\\\\\";]|\\\\.)*"
           }
         }
       ]
@@ -701,6 +782,22 @@
         }
       ]
     },
+    "bool_vector": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "#&[0-9]+"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        }
+      ]
+    },
     "bytecode": {
       "type": "SEQ",
       "members": [
@@ -750,7 +847,11 @@
       "members": [
         {
           "type": "STRING",
-          "value": "#s(hash-table"
+          "value": "#s("
+        },
+        {
+          "type": "STRING",
+          "value": "hash-table"
         },
         {
           "type": "REPEAT",
@@ -764,6 +865,49 @@
           "value": ")"
         }
       ]
+    },
+    "record": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#s("
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_sexp"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "circular_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "#[0-9]+="
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_sexp"
+        }
+      ]
+    },
+    "circular_reference": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "#[0-9]+#"
+      }
     },
     "comment": {
       "type": "TOKEN",

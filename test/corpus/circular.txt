@@ -1,0 +1,46 @@
+================================================================================
+Circular and shared structure
+================================================================================
+
+'#1=(a . #1#)
+'#2=([y] ((y #2#)))
+(#1=(a #1#))
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (quote
+    (circular_definition
+      (list
+        (symbol)
+        (symbol)
+        (circular_reference))))
+  (quote
+    (circular_definition
+      (list
+        (vector
+          (symbol))
+        (list
+          (list
+            (symbol)
+            (circular_reference))))))
+  (list
+    (circular_definition
+      (list
+        (symbol)
+        (circular_reference)))))
+
+================================================================================
+Circular references to records
+================================================================================
+
+(#1=#s(foo) #1#)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (list
+    (circular_definition
+      (record
+        (symbol)))
+    (circular_reference)))

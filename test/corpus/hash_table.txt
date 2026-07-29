@@ -9,3 +9,16 @@ Hash table read syntax
 (source_file
   (hash_table
     (integer)))
+
+================================================================================
+Records whose type merely starts with hash-table
+================================================================================
+
+#s(hash-table-p 1)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (record
+    (symbol)
+    (integer)))

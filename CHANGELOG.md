@@ -14,6 +14,36 @@ Integers written with a radix, such as `#x2603`, are now parsed as a
 single integer. Previously only the first digit was included, so the
 rest became a second literal.
 
+Radix integers may now be written with an uppercase prefix, such as
+`#XF6` or `#24R1k`, and may be negative, such as `#x-8000`. These were
+previously parse errors.
+
+Added support for records, such as `#s(foo 1 2)`, as a new
+`record` node. These were previously parse errors. `#s(hash-table ...)`
+is still parsed as a `hash_table`, but a record whose type merely starts
+with those characters, such as `#s(hash-table-p 1)`, is no longer
+mistaken for a hash table.
+
+Added support for circular and shared structure read syntax, such as
+`'#1=(a . #1#)`, as new `circular_definition` and `circular_reference`
+nodes. These were previously parse errors.
+
+Added support for bool vectors, such as `#&8"\0"`, as a new
+`bool_vector` node. These were previously parse errors.
+
+Added support for symbols that bypass shorthands, such as `#_foo`. These
+were previously parse errors.
+
+Character literals whose final character is escaped, such as `?\C-\[`
+and `?\^\\`, are now parsed correctly. Previously the trailing backslash
+consumed the following character, so `?\C-\[` opened a vector and
+swallowed the rest of the file.
+
+Character modifiers may now be applied to any escape sequence, so
+`?\C-\0`, `?\M-\x178` and `?\M-\N{SNOWMAN}` are each parsed as a single
+character. Previously only the modifier prefix was included, and the
+escape sequence became a separate literal.
+
 # v1.6.1 (released 15 November 2025)
 
 Updated Rust bindings to use tree-sitter-language.
