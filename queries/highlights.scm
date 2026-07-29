@@ -73,3 +73,8 @@
   "nil"
   "t"
 ] @constant.builtin
+
+;; Keywords evaluate to themselves, so highlight them as constants too.
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Constant-Variables.html
+((symbol) @constant
+  (#match? @constant "^:"))
