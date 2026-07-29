@@ -46,6 +46,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "char_table"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sub_char_table"
+        },
+        {
+          "type": "SYMBOL",
           "name": "bytecode"
         },
         {
@@ -945,6 +953,46 @@
         {
           "type": "SYMBOL",
           "name": "string"
+        }
+      ]
+    },
+    "char_table": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#^["
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_sexp"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "sub_char_table": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#^^["
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_sexp"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },
