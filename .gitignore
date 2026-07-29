@@ -15,12 +15,6 @@ Package.resolved
 # Go artifacts
 _obj/
 
-# Python artifacts
-.venv/
-dist/
-*.egg-info
-*.whl
-
 # C artifacts
 *.a
 *.so
