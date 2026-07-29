@@ -13,3 +13,25 @@ bar
   (symbol)
   (comment)
   (symbol))
+
+================================================================================
+Control characters and no-break space are whitespace
+================================================================================
+
+ab
+cd
+e f
+(gh)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
+  (symbol)
+  (list
+    (symbol)
+    (symbol)))

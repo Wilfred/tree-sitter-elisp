@@ -4,6 +4,12 @@ const STRING = token(
   seq('"', repeat(choice(/[^"\\]/, seq("\\", /(.|\n)/))), '"')
 );
 
+// The reader treats every character from ^A up to and including space,
+// as well as no-break space, as whitespace. Notably that covers the
+// control characters, so a stray ^L or ^P separates two symbols rather
+// than becoming part of one.
+const WHITESPACE = /[\x01-\x20\xA0]/;
+
 // Symbols can contain any character when escaped:
 // https://www.gnu.org/software/emacs/manual/html_node/elisp/Symbol-Type.html
 // Most characters do not need escaping, but space and parentheses
@@ -11,7 +17,7 @@ const STRING = token(
 //
 // Symbols also cannot start with ?.
 const SYMBOL = token(
-  /([^?# \n\s\f()\[\]'`,\\";]|\\.)([^# \n\s\f()\[\]'`,\\";]|\\.)*/
+  /([^?#\x01-\x20\xA0()\[\]'`,\\";]|\\.)([^#\x01-\x20\xA0()\[\]'`,\\";]|\\.)*/
 );
 
 const ESCAPED_READER_SYMBOL = token(/\\(`|'|,)/);
@@ -20,7 +26,7 @@ const INTERNED_EMPTY_STRING = token("##");
 // Uninterned symbols are written with a #: prefix, e.g. #:foo. The name
 // may be empty, so #: on its own is also a symbol.
 // https://www.gnu.org/software/emacs/manual/html_node/elisp/Creating-Symbols.html
-const UNINTERNED_SYMBOL = token(/#:([^# \n\s\f()\[\]'`,\\";]|\\.)*/);
+const UNINTERNED_SYMBOL = token(/#:([^#\x01-\x20\xA0()\[\]'`,\\";]|\\.)*/);
 
 const INTEGER_BASE10 = token(/[+-]?[0-9]+\.?/);
 // The radix prefix may be written in either case, e.g. #XF6 and #24R1k
@@ -73,7 +79,7 @@ const BYTE_COMPILED_FILE_NAME = token("#$");
 module.exports = grammar({
   name: "elisp",
 
-  extras: ($) => [/(\s|\f)/, $.comment],
+  extras: ($) => [WHITESPACE, $.comment],
 
   rules: {
     source_file: ($) => repeat($._sexp),
