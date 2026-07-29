@@ -2,6 +2,8 @@
 
 Improved parsing for float literals.
 
+Improved parsing for symbols separated by control characters.
+
 # v1.7.0 (released 29 July 2026)
 
 ## Parsing
