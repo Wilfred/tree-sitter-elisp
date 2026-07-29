@@ -9,10 +9,13 @@ Syntax supported:
 
 * Atoms (integers, floats, strings, characters, symbols)
 * Lists (normal syntax `(a b)` and dotted `(a . b)`)
-* Vectors
+* Vectors, boolean vectors, character tables, and sub-character tables
+* Records and hash tables
 * Quoting and unquoting (`'`, `#'`, `` ` ``, `,`, `,@`)
-* Some special read syntax (`#$`, `##`, `#("foo" 1 2 x)`)
+* Special read syntax (`#$`, `##`, `#:foo`, `#("foo" 1 2 x)`)
+* Circular and shared object labels (`#1=` and `#1#`)
 * Bytecode literals (`#[1 2 3 4]`)
+* Bytecode comments (`#@N`)
 * Special forms (`let` etc)
 * Comments
 
