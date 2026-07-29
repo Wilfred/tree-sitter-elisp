@@ -1,0 +1,20 @@
+================================================================================
+Circular and shared object read syntax
+================================================================================
+
+#1=(a #1#)
+(#1=(a) b #1#)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (circular_definition
+    (list
+      (symbol)
+      (circular_reference)))
+  (list
+    (circular_definition
+      (list
+        (symbol)))
+    (symbol)
+    (circular_reference)))
