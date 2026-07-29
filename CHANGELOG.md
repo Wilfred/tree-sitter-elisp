@@ -1,4 +1,6 @@
-# v1.7.0 (unreleased)
+# v1.7.1 (unreleased)
+
+# v1.7.0 (released 29 July 2026)
 
 ## Parsing
 
