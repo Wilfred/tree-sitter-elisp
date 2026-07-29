@@ -48,4 +48,18 @@ mod tests {
             .set_language(&super::LANGUAGE.into())
             .expect("Error loading Emacs Lisp parser");
     }
+
+    #[test]
+    fn test_string_with_nul_bytes() {
+        let mut parser = tree_sitter::Parser::new();
+        parser
+            .set_language(&super::LANGUAGE.into())
+            .expect("Error loading Emacs Lisp parser");
+        let tree = parser.parse(b"(defconst data \"a\0b\")", None).unwrap();
+        assert!(
+            !tree.root_node().has_error(),
+            "{}",
+            tree.root_node().to_sexp()
+        );
+    }
 }
