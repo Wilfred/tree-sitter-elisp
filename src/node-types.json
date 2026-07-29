@@ -466,6 +466,10 @@
           "named": true
         },
         {
+          "type": "dot",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -895,6 +899,10 @@
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "dot",
           "named": true
         },
         {
@@ -1393,6 +1401,10 @@
   {
     "type": "defvar",
     "named": false
+  },
+  {
+    "type": "dot",
+    "named": true
   },
   {
     "type": "function",
