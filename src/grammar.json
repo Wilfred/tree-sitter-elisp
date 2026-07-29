@@ -50,6 +50,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "circular_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "circular_reference"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_atom"
         },
         {
@@ -919,6 +927,29 @@
           "value": ")"
         }
       ]
+    },
+    "circular_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "#[0-9]+="
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_sexp"
+        }
+      ]
+    },
+    "circular_reference": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "#[0-9]+#"
+      }
     },
     "comment": {
       "type": "TOKEN",

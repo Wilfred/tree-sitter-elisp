@@ -20,6 +20,14 @@
           "named": true
         },
         {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -92,6 +100,101 @@
     "fields": {}
   },
   {
+    "type": "circular_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "byte_compiled_file_name",
+          "named": true
+        },
+        {
+          "type": "bytecode",
+          "named": true
+        },
+        {
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_quote",
+          "named": true
+        },
+        {
+          "type": "hash_table",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "macro_definition",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
+          "named": true
+        },
+        {
+          "type": "special_form",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "string_text_properties",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "float",
     "named": true,
     "fields": {}
@@ -134,6 +237,14 @@
           },
           {
             "type": "char",
+            "named": true
+          },
+          {
+            "type": "circular_definition",
+            "named": true
+          },
+          {
+            "type": "circular_reference",
             "named": true
           },
           {
@@ -217,6 +328,14 @@
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
           "named": true
         },
         {
@@ -307,6 +426,14 @@
           "named": true
         },
         {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -391,6 +518,14 @@
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
           "named": true
         },
         {
@@ -483,6 +618,14 @@
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
           "named": true
         },
         {
@@ -597,6 +740,14 @@
             "named": true
           },
           {
+            "type": "circular_definition",
+            "named": true
+          },
+          {
+            "type": "circular_reference",
+            "named": true
+          },
+          {
             "type": "float",
             "named": true
           },
@@ -677,6 +828,14 @@
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
           "named": true
         },
         {
@@ -764,6 +923,14 @@
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
           "named": true
         },
         {
@@ -865,6 +1032,14 @@
           "named": true
         },
         {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -953,6 +1128,14 @@
           "named": true
         },
         {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -1037,6 +1220,14 @@
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
           "named": true
         },
         {
@@ -1128,6 +1319,14 @@
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
           "named": true
         },
         {
@@ -1223,6 +1422,14 @@
           "named": true
         },
         {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -1310,6 +1517,14 @@
           "named": true
         },
         {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -1394,6 +1609,14 @@
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "circular_definition",
+          "named": true
+        },
+        {
+          "type": "circular_reference",
           "named": true
         },
         {
@@ -1530,6 +1753,10 @@
   {
     "type": "catch",
     "named": false
+  },
+  {
+    "type": "circular_reference",
+    "named": true
   },
   {
     "type": "comment",
