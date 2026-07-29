@@ -835,13 +835,6 @@
           "value": ")"
         }
       ]
-    },
-    "comment": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": ";.*"
-      }
     }
   },
   "extras": [
@@ -856,7 +849,12 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "comment"
+    }
+  ],
   "inline": [],
   "supertypes": [],
   "reserved": {}

@@ -1,5 +1,3 @@
-const COMMENT = token(/;.*/);
-
 const STRING = token(
   seq('"', repeat(choice(/[^"\\]/, seq("\\", /(.|\n)/))), '"')
 );
@@ -68,6 +66,10 @@ const BYTE_COMPILED_FILE_NAME = token("#$");
 
 module.exports = grammar({
   name: "elisp",
+
+  // Comments use an external scanner because the generated lexer treats NUL
+  // as a sentinel, even when it occurs before the actual end of the input.
+  externals: ($) => [$.comment],
 
   extras: ($) => [/(\s|\f)/, $.comment],
 
@@ -212,6 +214,5 @@ module.exports = grammar({
 
     hash_table: ($) => seq("#s(hash-table", repeat($._sexp), ")"),
 
-    comment: ($) => COMMENT,
   },
 });

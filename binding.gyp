@@ -11,7 +11,7 @@
       "sources": [
         "bindings/node/binding.cc",
         "src/parser.c",
-        # NOTE: if your language has an external scanner, add it here.
+        "src/scanner.c",
       ],
       # Node 24 builds addons against V8 headers that need C++ 20.
       #
