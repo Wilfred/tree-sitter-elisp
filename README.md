@@ -11,7 +11,7 @@ Syntax supported:
 * Lists (normal syntax `(a b)` and dotted `(a . b)`)
 * Vectors
 * Quoting and unquoting (`'`, `#'`, `` ` ``, `,`, `,@`)
-* Some special read syntax (`$#`, `##`, `#("foo" 1 2 x)`)
+* Some special read syntax (`#$`, `##`, `#("foo" 1 2 x)`)
 * Bytecode literals (`#[1 2 3 4]`)
 * Special forms (`let` etc)
 * Comments
