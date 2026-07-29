@@ -69,6 +69,10 @@ const BYTE_COMPILED_FILE_NAME = token("#$");
 module.exports = grammar({
   name: "elisp",
 
+  // Escaped raw NUL characters require an external scanner because the
+  // generated lexer uses NUL as an end-of-input sentinel.
+  externals: ($) => [$._symbol_with_raw_escape],
+
   extras: ($) => [/(\s|\f)/, $.comment],
 
   rules: {
@@ -190,7 +194,8 @@ module.exports = grammar({
         ESCAPED_READER_SYMBOL,
         SYMBOL,
         INTERNED_EMPTY_STRING,
-        UNINTERNED_SYMBOL
+        UNINTERNED_SYMBOL,
+        $._symbol_with_raw_escape
       ),
 
     quote: ($) => seq(choice("'", "`"), $._sexp),
