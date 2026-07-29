@@ -38,8 +38,12 @@ const FLOAT_WITH_DEC_POINT = token(
   seq(/[+-]?[0-9]*\.[0-9]+/, optional(EXPONENT))
 );
 const FLOAT_WITH_EXPONENT = token(seq(/[+-]?[0-9]+\.?[0-9]*/, EXPONENT));
-const FLOAT_INF = token(/[+-]?1\.0[eE]\+INF/);
-const FLOAT_NAN = token(/[+-]?0\.0[eE]\+NaN/);
+const FLOAT_INF = token(
+  seq(/[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)/, /[eE]\+INF/)
+);
+const FLOAT_NAN = token(
+  seq(/[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)/, /[eE]\+NaN/)
+);
 
 // Any character literal may be prefixed by modifiers, e.g. ?\C-, ?\M-
 // or the equivalent ?\^. This includes the escape sequences below, so
