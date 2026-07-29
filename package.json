@@ -12,7 +12,6 @@
     "grammar.js",
     "tree-sitter.json",
     "binding.gyp",
-    "prebuilds/**",
     "bindings/node/*",
     "queries/*",
     "src/**"
@@ -23,8 +22,7 @@
     "highlight": "tree-sitter highlight",
     "parse": "tree-sitter parse",
     "test": "tree-sitter test",
-    "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
+    "install": "node-gyp-build"
   },
   "author": "Wilfred Hughes <me@wilfred.me.uk>",
   "repository": {
@@ -45,8 +43,7 @@
     }
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.25.0",
-    "prebuildify": "^6.0.0"
+    "tree-sitter-cli": "^0.25.0"
   },
   "tree-sitter": [
     {
