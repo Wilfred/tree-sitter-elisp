@@ -16,11 +16,11 @@ Syntax supported:
 * Special forms (`let` etc)
 * Comments
 
-Limitations:
+Syntax limitations:
 
 * Autoload cookies are treated as plain comments
 
-## Limitations
+## Lisp-2 Limitations
 
 Elisp is a lisp-2 with user-defined macros. A simple parser cannot
 detect if e.g. `(foo (let ...))` is a function call with a `let`
