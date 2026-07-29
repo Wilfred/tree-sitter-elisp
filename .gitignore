@@ -40,6 +40,7 @@ zig-out/
 /examples/*/
 
 # Grammar volatiles
+/src/parser.c
 *.wasm
 *.obj
 *.o
