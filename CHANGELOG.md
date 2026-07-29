@@ -6,7 +6,7 @@
 
 Added support for parsing uninterned symbols `#:foo`.
 
-Improved parsing for float literals, integer literals, and characters
+Improved parsing for float literals, integer literals, and character
 literals.
 
 Sharp quoted forms, such as `#'foo` and `#'(lambda (x) x)`, are now
