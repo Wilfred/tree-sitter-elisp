@@ -23,3 +23,36 @@ Lists
   (list
     (symbol)
     (symbol)))
+
+================================================================================
+Dotted pairs where the dot is not followed by a space
+================================================================================
+
+(a .?b)
+(a .b)
+(a ..b)
+(a ."s")
+(a .[b])
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (list
+    (symbol)
+    (symbol)
+    (char))
+  (list
+    (symbol)
+    (symbol))
+  (list
+    (symbol)
+    (symbol))
+  (list
+    (symbol)
+    (symbol)
+    (string))
+  (list
+    (symbol)
+    (symbol)
+    (vector
+      (symbol))))

@@ -657,8 +657,94 @@
         {
           "type": "TOKEN",
           "content": {
-            "type": "PATTERN",
-            "value": "([^?#\\x01-\\x20\\xA0()\\[\\]'`,\\\\\";]|\\\\.)([^#\\x01-\\x20\\xA0()\\[\\]'`,\\\\\";]|\\\\.)*"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "PATTERN",
+                        "value": "[^?#.\\x01-\\x20\\xA0()\\[\\]'`,\\\\\";]"
+                      },
+                      {
+                        "type": "PATTERN",
+                        "value": "\\\\."
+                      }
+                    ]
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "PATTERN",
+                          "value": "[^#\\x01-\\x20\\xA0()\\[\\]'`,\\\\\";]"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "\\\\."
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "."
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "PATTERN",
+                                "value": "[^?#\\x01-\\x20\\xA0()\\[\\]'`,\\\\\";]"
+                              },
+                              {
+                                "type": "PATTERN",
+                                "value": "\\\\."
+                              }
+                            ]
+                          },
+                          {
+                            "type": "REPEAT",
+                            "content": {
+                              "type": "CHOICE",
+                              "members": [
+                                {
+                                  "type": "PATTERN",
+                                  "value": "[^#\\x01-\\x20\\xA0()\\[\\]'`,\\\\\";]"
+                                },
+                                {
+                                  "type": "PATTERN",
+                                  "value": "\\\\."
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         },
         {

@@ -16,8 +16,20 @@ const WHITESPACE = /[\x01-\x20\xA0]/;
 // certainly do.
 //
 // Symbols also cannot start with ?.
+const SYMBOL_FIRST = /[^?#\x01-\x20\xA0()\[\]'`,\\";]/;
+const SYMBOL_REST = /[^#\x01-\x20\xA0()\[\]'`,\\";]/;
+const SYMBOL_TAIL = repeat(choice(SYMBOL_REST, /\\./));
+
+// The reader ends a bare "." as soon as the next character is one of
+// "';([#?`, or whitespace, which is how (a .?b) reads as the pair
+// (a . ?b) rather than as a symbol. All of those are already excluded
+// from symbols except ?, so only a leading dot has to rule it out.
+// A dot elsewhere is an ordinary symbol character, so ..? is a symbol.
 const SYMBOL = token(
-  /([^?#\x01-\x20\xA0()\[\]'`,\\";]|\\.)([^#\x01-\x20\xA0()\[\]'`,\\";]|\\.)*/
+  choice(
+    seq(choice(/[^?#.\x01-\x20\xA0()\[\]'`,\\";]/, /\\./), SYMBOL_TAIL),
+    seq(".", optional(seq(choice(SYMBOL_FIRST, /\\./), SYMBOL_TAIL)))
+  )
 );
 
 const ESCAPED_READER_SYMBOL = token(/\\(`|'|,)/);
