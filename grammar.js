@@ -84,6 +84,7 @@ module.exports = grammar({
         $.vector,
         $.hash_table,
         $.record,
+        $.bool_vector,
         $.bytecode,
         $.string_text_properties,
         $.circular_definition,
@@ -229,6 +230,8 @@ module.exports = grammar({
     hash_table: ($) => seq("#s(hash-table", repeat($._sexp), ")"),
     record: ($) =>
       seq("#s(", field("type", $.symbol), repeat($._sexp), ")"),
+
+    bool_vector: ($) => seq(token(/#&[0-9]+/), $.string),
 
     circular_definition: ($) => seq(token(/#[0-9]+=/), $._sexp),
     circular_reference: ($) => token(/#[0-9]+#/),

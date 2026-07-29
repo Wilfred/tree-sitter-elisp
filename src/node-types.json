@@ -1,5 +1,20 @@
 [
   {
+    "type": "bool_vector",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "bytecode",
     "named": true,
     "fields": {},
@@ -7,6 +22,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "bool_vector",
+          "named": true
+        },
         {
           "type": "byte_compiled_file_name",
           "named": true
@@ -107,6 +126,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "bool_vector",
+          "named": true
+        },
         {
           "type": "byte_compiled_file_name",
           "named": true
@@ -228,6 +251,10 @@
         "required": false,
         "types": [
           {
+            "type": "bool_vector",
+            "named": true
+          },
+          {
             "type": "byte_compiled_file_name",
             "named": true
           },
@@ -318,6 +345,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "bool_vector",
+          "named": true
+        },
         {
           "type": "byte_compiled_file_name",
           "named": true
@@ -414,6 +445,10 @@
       "required": true,
       "types": [
         {
+          "type": "bool_vector",
+          "named": true
+        },
+        {
           "type": "byte_compiled_file_name",
           "named": true
         },
@@ -508,6 +543,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "bool_vector",
+          "named": true
+        },
         {
           "type": "byte_compiled_file_name",
           "named": true
@@ -608,6 +647,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "bool_vector",
+          "named": true
+        },
         {
           "type": "byte_compiled_file_name",
           "named": true
@@ -728,6 +771,10 @@
         "required": false,
         "types": [
           {
+            "type": "bool_vector",
+            "named": true
+          },
+          {
             "type": "byte_compiled_file_name",
             "named": true
           },
@@ -818,6 +865,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "bool_vector",
+          "named": true
+        },
         {
           "type": "byte_compiled_file_name",
           "named": true
@@ -913,6 +964,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "bool_vector",
+          "named": true
+        },
         {
           "type": "byte_compiled_file_name",
           "named": true
@@ -1020,6 +1075,10 @@
       "required": false,
       "types": [
         {
+          "type": "bool_vector",
+          "named": true
+        },
+        {
           "type": "byte_compiled_file_name",
           "named": true
         },
@@ -1116,6 +1175,10 @@
       "required": false,
       "types": [
         {
+          "type": "bool_vector",
+          "named": true
+        },
+        {
           "type": "byte_compiled_file_name",
           "named": true
         },
@@ -1210,6 +1273,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "bool_vector",
+          "named": true
+        },
         {
           "type": "byte_compiled_file_name",
           "named": true
@@ -1309,6 +1376,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "bool_vector",
+          "named": true
+        },
         {
           "type": "byte_compiled_file_name",
           "named": true
@@ -1410,6 +1481,10 @@
       "required": true,
       "types": [
         {
+          "type": "bool_vector",
+          "named": true
+        },
+        {
           "type": "byte_compiled_file_name",
           "named": true
         },
@@ -1505,6 +1580,10 @@
       "required": true,
       "types": [
         {
+          "type": "bool_vector",
+          "named": true
+        },
+        {
           "type": "byte_compiled_file_name",
           "named": true
         },
@@ -1599,6 +1678,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "bool_vector",
+          "named": true
+        },
         {
           "type": "byte_compiled_file_name",
           "named": true
