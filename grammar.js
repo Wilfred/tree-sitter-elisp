@@ -69,6 +69,10 @@ const BYTE_COMPILED_FILE_NAME = token("#$");
 module.exports = grammar({
   name: "elisp",
 
+  // Raw NUL characters require an external scanner because the generated
+  // lexer uses NUL as an end-of-input sentinel.
+  externals: ($) => [$._raw_char],
+
   extras: ($) => [/(\s|\f)/, $.comment],
 
   rules: {
@@ -172,7 +176,8 @@ module.exports = grammar({
         UPPER_CODE_POINT_CHAR,
         HEX_CHAR,
         OCTAL_CHAR,
-        KEY_CHAR
+        KEY_CHAR,
+        $._raw_char
       ),
     string: ($) => STRING,
     byte_compiled_file_name: ($) => BYTE_COMPILED_FILE_NAME,
