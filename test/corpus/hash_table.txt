@@ -9,3 +9,22 @@ Hash table read syntax
 (source_file
   (hash_table
     (integer)))
+
+================================================================================
+Record read syntax
+================================================================================
+
+#s(foo bar)
+#s(widget 1 [2])
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (record
+    (symbol)
+    (symbol))
+  (record
+    (symbol)
+    (integer)
+    (vector
+      (integer))))

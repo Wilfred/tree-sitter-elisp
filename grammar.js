@@ -83,6 +83,7 @@ module.exports = grammar({
         $.list,
         $.vector,
         $.hash_table,
+        $.record,
         $.bytecode,
         $.string_text_properties,
         $._atom,
@@ -224,6 +225,8 @@ module.exports = grammar({
     string_text_properties: ($) => seq("#(", $.string, repeat($._sexp), ")"),
 
     hash_table: ($) => seq("#s(hash-table", repeat($._sexp), ")"),
+    record: ($) =>
+      seq("#s(", field("type", $.symbol), repeat($._sexp), ")"),
 
     comment: ($) => COMMENT,
   },
