@@ -210,11 +210,24 @@ static bool scan_bytecode_comment(TSLexer *lexer) {
     return false;
   }
 
-  for (size_t i = 0; i < count; i++) {
+  size_t consumed = 0;
+  while (consumed < count) {
     if (lexer->eof(lexer)) {
       return false;
     }
+    size_t width = 1;
+    if (lexer->lookahead > 0x7f && lexer->lookahead <= 0x7ff) {
+      width = 2;
+    } else if (lexer->lookahead > 0x7ff && lexer->lookahead <= 0xffff) {
+      width = 3;
+    } else if (lexer->lookahead > 0xffff) {
+      width = 4;
+    }
+    if (consumed + width > count) {
+      return false;
+    }
     lexer->advance(lexer, false);
+    consumed += width;
   }
 
   lexer->result_symbol = BYTECODE_COMMENT;

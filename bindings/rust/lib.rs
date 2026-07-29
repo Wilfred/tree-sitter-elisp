@@ -130,6 +130,13 @@ mod tests {
             "{}",
             tree.root_node().to_sexp()
         );
+
+        let tree = parser.parse("#@5éabcfoo", None).unwrap();
+        assert!(
+            !tree.root_node().has_error(),
+            "{}",
+            tree.root_node().to_sexp()
+        );
     }
 
     #[test]
