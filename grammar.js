@@ -1,9 +1,5 @@
 const COMMENT = token(/;.*/);
 
-const STRING = token(
-  seq('"', repeat(choice(/[^"\\]/, seq("\\", /(.|\n)/))), '"')
-);
-
 // Symbols can contain any character when escaped:
 // https://www.gnu.org/software/emacs/manual/html_node/elisp/Symbol-Type.html
 // Most characters do not need escaping, but space and parentheses
@@ -68,6 +64,10 @@ const BYTE_COMPILED_FILE_NAME = token("#$");
 
 module.exports = grammar({
   name: "elisp",
+
+  // Strings use an external scanner because the generated lexer treats NUL
+  // as a sentinel, even when it occurs before the actual end of the input.
+  externals: ($) => [$.string],
 
   extras: ($) => [/(\s|\f)/, $.comment],
 
@@ -174,7 +174,6 @@ module.exports = grammar({
         OCTAL_CHAR,
         KEY_CHAR
       ),
-    string: ($) => STRING,
     byte_compiled_file_name: ($) => BYTE_COMPILED_FILE_NAME,
     symbol: ($) =>
       choice(
