@@ -44,6 +44,9 @@ Check out the repo, then use `npm` to install dependencies.
 $ npm install
 ```
 
+`src/parser.c` is generated from the grammar rather than checked in,
+so `npm install` also runs `tree-sitter generate` when it's missing.
+
 You can then parse your favourite elisp files.
 
 ```
@@ -76,6 +79,26 @@ run the following.
 
 ```
 $ npm run ts-init
+```
+
+## Releasing
+
+Every package ships a generated `src/parser.c`, so make sure it's up to
+date before publishing.
+
+```
+$ npm run generate
+```
+
+`npm publish` does this for you (it's wired up as a `prepack` script),
+whereas `cargo publish` and the Python build use whatever is on disk.
+Cargo needs `--allow-dirty` because `src/parser.c` is packaged but not
+tracked by git.
+
+```
+$ npm publish
+$ cargo publish --allow-dirty
+$ python -m build
 ```
 
 ## Why?

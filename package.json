@@ -22,7 +22,8 @@
     "highlight": "tree-sitter highlight",
     "parse": "tree-sitter parse",
     "test": "tree-sitter test",
-    "install": "node-gyp-build"
+    "install": "node -e \"require('fs').existsSync('src/parser.c') || require('child_process').execSync('tree-sitter generate', { stdio: 'inherit' })\" && node-gyp-build",
+    "prepack": "tree-sitter generate"
   },
   "author": "Wilfred Hughes <me@wilfred.me.uk>",
   "repository": {

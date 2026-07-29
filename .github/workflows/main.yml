@@ -16,6 +16,8 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: 24.x
+      # Also generates src/parser.c, which isn't checked in. Both the
+      # test run below and the Rust bindings need it.
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test
