@@ -4,6 +4,8 @@ Improved parsing for float literals.
 
 Improved parsing for symbols separated by control characters.
 
+Added support for parsing `#!` comments, such as shebang lines.
+
 # v1.7.0 (released 29 July 2026)
 
 ## Parsing

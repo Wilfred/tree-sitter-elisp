@@ -1,4 +1,8 @@
-const COMMENT = token(/;.*/);
+// #! also starts a comment that runs to the end of the line, so a
+// script can begin with a shebang, e.g. #!/usr/bin/emacs --script. The
+// reader isn't limited to the first line, so #! comments out the rest
+// of the line wherever it occurs.
+const COMMENT = token(choice(/;.*/, /#!.*/));
 
 const STRING = token(
   seq('"', repeat(choice(/[^"\\]/, seq("\\", /(.|\n)/))), '"')
