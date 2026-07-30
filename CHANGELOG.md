@@ -1,10 +1,16 @@
-# v1.7.2 (unreleased)
+# v1.7.3 (unreleased)
+
+# v1.7.2 (released 30 July 2026)
 
 Improved parsing for float literals.
 
 Improved parsing for symbols separated by control characters.
 
 Added support for parsing `#!` comments, such as shebang lines.
+
+# v1.7.1
+
+Yanked after publishing a version with a stale `parser.c`.
 
 # v1.7.0 (released 29 July 2026)
 
