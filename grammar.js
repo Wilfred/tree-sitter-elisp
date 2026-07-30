@@ -95,7 +95,7 @@ module.exports = grammar({
         $.macro_definition,
         $.list,
         $.vector,
-        $.hash_table,
+        $.record,
         $.bytecode,
         $.string_text_properties,
         $._atom,
@@ -224,7 +224,12 @@ module.exports = grammar({
 
     string_text_properties: ($) => seq("#(", $.string, repeat($._sexp), ")"),
 
-    hash_table: ($) => seq("#s(hash-table", repeat($._sexp), ")"),
+    // Records are written #s(type slot...), e.g. #s(foo 1 2) for a
+    // record of type foo. Hash tables share this syntax, using the type
+    // hash-table, so they're records here too even though the reader
+    // builds a different object for them.
+    // https://www.gnu.org/software/emacs/manual/html_node/elisp/Records.html
+    record: ($) => seq("#s(", repeat($._sexp), ")"),
 
     comment: ($) => COMMENT,
   },

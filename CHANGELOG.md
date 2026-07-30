@@ -6,6 +6,9 @@ Improved parsing for symbols separated by control characters.
 
 Added support for parsing `#!` comments, such as shebang lines.
 
+Added support for parsing records, such as `#s(foo 1 2)`. Hash tables
+are now parsed as `record` rather than `hash_table`.
+
 # v1.7.0 (released 29 July 2026)
 
 ## Parsing

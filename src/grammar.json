@@ -34,7 +34,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "hash_table"
+          "name": "record"
         },
         {
           "type": "SYMBOL",
@@ -834,12 +834,12 @@
         }
       ]
     },
-    "hash_table": {
+    "record": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "#s(hash-table"
+          "value": "#s("
         },
         {
           "type": "REPEAT",

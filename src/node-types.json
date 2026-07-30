@@ -32,10 +32,6 @@
           "named": true
         },
         {
-          "type": "hash_table",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
@@ -49,6 +45,10 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -145,10 +145,6 @@
             "named": true
           },
           {
-            "type": "hash_table",
-            "named": true
-          },
-          {
             "type": "integer",
             "named": true
           },
@@ -162,6 +158,10 @@
           },
           {
             "type": "quote",
+            "named": true
+          },
+          {
+            "type": "record",
             "named": true
           },
           {
@@ -224,10 +224,6 @@
           "named": true
         },
         {
-          "type": "hash_table",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
@@ -241,6 +237,10 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -307,10 +307,6 @@
           "named": true
         },
         {
-          "type": "hash_table",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
@@ -327,86 +323,7 @@
           "named": true
         },
         {
-          "type": "special_form",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "string_text_properties",
-          "named": true
-        },
-        {
-          "type": "symbol",
-          "named": true
-        },
-        {
-          "type": "unquote",
-          "named": true
-        },
-        {
-          "type": "unquote_splice",
-          "named": true
-        },
-        {
-          "type": "vector",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "hash_table",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "byte_compiled_file_name",
-          "named": true
-        },
-        {
-          "type": "bytecode",
-          "named": true
-        },
-        {
-          "type": "char",
-          "named": true
-        },
-        {
-          "type": "float",
-          "named": true
-        },
-        {
-          "type": "function_definition",
-          "named": true
-        },
-        {
-          "type": "function_quote",
-          "named": true
-        },
-        {
-          "type": "hash_table",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "macro_definition",
-          "named": true
-        },
-        {
-          "type": "quote",
+          "type": "record",
           "named": true
         },
         {
@@ -478,10 +395,6 @@
           "named": true
         },
         {
-          "type": "hash_table",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
@@ -495,6 +408,10 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -581,10 +498,6 @@
             "named": true
           },
           {
-            "type": "hash_table",
-            "named": true
-          },
-          {
             "type": "integer",
             "named": true
           },
@@ -598,6 +511,10 @@
           },
           {
             "type": "quote",
+            "named": true
+          },
+          {
+            "type": "record",
             "named": true
           },
           {
@@ -660,10 +577,6 @@
           "named": true
         },
         {
-          "type": "hash_table",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
@@ -677,6 +590,10 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -743,7 +660,86 @@
           "named": true
         },
         {
-          "type": "hash_table",
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "macro_definition",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
+          "named": true
+        },
+        {
+          "type": "special_form",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "string_text_properties",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splice",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "record",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "byte_compiled_file_name",
+          "named": true
+        },
+        {
+          "type": "bytecode",
+          "named": true
+        },
+        {
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_quote",
           "named": true
         },
         {
@@ -760,6 +756,10 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -827,10 +827,6 @@
           "named": true
         },
         {
-          "type": "hash_table",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
@@ -844,6 +840,10 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -910,10 +910,6 @@
           "named": true
         },
         {
-          "type": "hash_table",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
@@ -927,6 +923,10 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -993,10 +993,6 @@
           "named": true
         },
         {
-          "type": "hash_table",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
@@ -1010,6 +1006,10 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -1081,10 +1081,6 @@
           "named": true
         },
         {
-          "type": "hash_table",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
@@ -1098,6 +1094,10 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -1164,10 +1164,6 @@
           "named": true
         },
         {
-          "type": "hash_table",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
@@ -1181,6 +1177,10 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -1247,10 +1247,6 @@
           "named": true
         },
         {
-          "type": "hash_table",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
@@ -1264,6 +1260,10 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -1314,7 +1314,7 @@
     "named": false
   },
   {
-    "type": "#s(hash-table",
+    "type": "#s(",
     "named": false
   },
   {
