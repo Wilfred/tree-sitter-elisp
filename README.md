@@ -81,25 +81,6 @@ run the following.
 $ npm run ts-init
 ```
 
-## Releasing
-
-Every package ships a generated `src/parser.c`, so make sure it's up to
-date before publishing.
-
-```
-$ npm run generate
-```
-
-`npm publish` does this for you (it's wired up as a `prepack` script),
-whereas `cargo publish` uses whatever is on disk. Cargo needs
-`--allow-dirty` because `src/parser.c` is packaged but not tracked by
-git.
-
-```
-$ npm publish
-$ cargo publish --allow-dirty
-```
-
 ## Why?
 
 The best place to read and write elisp is of course Emacs.
@@ -107,6 +88,18 @@ The best place to read and write elisp is of course Emacs.
 However, there is a growing ecosystem of tools built on top of
 tree-sitter, such as GitHub. This project should allow them to support
 emacs lisp too.
+
+## Releasing
+
+Cargo needs
+`--allow-dirty` because `src/parser.c` is packaged but not tracked by
+git.
+
+```
+$ npm run generate
+$ npm publish
+$ cargo publish --allow-dirty
+```
 
 ## Related Projects
 
