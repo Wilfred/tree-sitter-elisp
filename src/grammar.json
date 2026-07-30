@@ -857,8 +857,17 @@
     "comment": {
       "type": "TOKEN",
       "content": {
-        "type": "PATTERN",
-        "value": ";.*"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": ";.*"
+          },
+          {
+            "type": "PATTERN",
+            "value": "#!.*"
+          }
+        ]
       }
     }
   },
