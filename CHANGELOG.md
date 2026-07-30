@@ -1,4 +1,4 @@
-# v1.7.1 (unreleased)
+# v1.7.2 (unreleased)
 
 Improved parsing for float literals.
 
