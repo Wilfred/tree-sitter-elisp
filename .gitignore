@@ -22,7 +22,6 @@ package-lock.json
 /examples/*/
 
 # Grammar volatiles
-/src/parser.c
 *.wasm
 *.obj
 *.o
