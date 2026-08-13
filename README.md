@@ -44,8 +44,10 @@ Check out the repo, then use `npm` to install dependencies.
 $ npm install
 ```
 
-`src/parser.c` is generated from the grammar rather than checked in,
-so `npm install` also runs `tree-sitter generate` when it's missing.
+`src/parser.c` is generated from the grammar, but it's also checked in
+so that this grammar can be built without the tree-sitter CLI. CI
+verifies that it's up to date, so remember to commit it after changing
+the grammar.
 
 You can then parse your favourite elisp files.
 
@@ -91,14 +93,10 @@ emacs lisp too.
 
 ## Releasing
 
-Cargo needs
-`--allow-dirty` because `src/parser.c` is packaged but not tracked by
-git.
-
 ```
 $ npm run generate
 $ npm publish
-$ cargo publish --allow-dirty
+$ cargo publish
 ```
 
 ## Related Projects
