@@ -1,5 +1,16 @@
 # v1.7.3 (unreleased)
 
+## Highlighting
+
+Docstrings are now highlighted as `string.documentation` rather than
+as plain strings.
+
+Argument list markers, such as `&optional` and `&rest`, are now
+highlighted as keywords rather than as parameters.
+
+Variables defined by `defvar` and `defconst`, or bound by `let` and
+`let*`, are now highlighted, as are `#(` and `#$`.
+
 # v1.7.2 (released 30 July 2026)
 
 Improved parsing for float literals.

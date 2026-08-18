@@ -1,10 +1,27 @@
 (defun foo (x)
-  ;; ^ keyword
+;;^ keyword
   ;;   ^ function
   ;;        ^ variable.parameter
   "stuff"
-  ;; ^ string
+;; ^ string.documentation
   x)
+
+(defun bar (x &optional y &rest zs)
+  ;;          ^ keyword
+  ;;                    ^ variable.parameter
+  ;;                      ^ keyword
+  ;;                            ^ variable.parameter
+  (list x y zs))
+
+(defmacro baz (a &rest body)
+  ;;^ keyword
+  ;;      ^ function
+  ;;           ^ variable.parameter
+  ;;             ^ keyword
+  ;;                   ^ variable.parameter
+  "Docstring."
+;; ^ string.documentation
+  body)
 
 (mapcar #'foo xs)
 ;;      ^ operator
